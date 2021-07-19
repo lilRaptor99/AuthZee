@@ -59,7 +59,7 @@
     </dependencies>
 
     <build>
-<!--        <finalName>AuthZee</finalName>-->
+        <!--<finalName>AuthZee</finalName>-->
 
         <plugins>
             <plugin>

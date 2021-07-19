@@ -25,7 +25,7 @@ public class Authorization {
             return Long.parseLong(JSONUserToken.getString("userLevel")) >= endpointAccessLevel;
 
         } catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }

@@ -17,6 +17,9 @@ public class Authentication {
      *                      or null - Invalid user credentials
      */
     public static JSONObject getUserToken(String username, String password, LocalDateTime expiryDate){
+        // Expiry date is not valid
+        if(!expiryDate.isAfter(LocalDateTime.now())) return null;
+
         User user = validateUserCredentials(username, password);
 
         // Invalid user credentials
@@ -33,7 +36,7 @@ public class Authentication {
         tokenObj.put("expiration", expDate);
         tokenObj.put("hash", tokenHash);
 
-        System.out.println("Created AuthToken = " + tokenObj.toString());
+        //System.out.println("Created AuthToken = " + tokenObj.toString());
 
         return tokenObj;
     }

@@ -75,8 +75,10 @@ public class loginServlet extends HttpServlet {
             res.put("userToken", userToken);
             res.put("message", "Login success");
             Cookie authTokenCookie = new Cookie("userToken", base64Encode(userToken.toString()));
-            authTokenCookie.setHttpOnly(true);
-            authTokenCookie.setSecure(true);
+
+           // authTokenCookie.setHttpOnly(true);
+           // authTokenCookie.setSecure(true);  // disabled to unit test the api
+
             authTokenCookie.setMaxAge(expireInDays*24*60*60);
             authTokenCookie.setPath("/");
             response.addCookie(authTokenCookie);

@@ -18,6 +18,7 @@ public class UserDao implements Dao<User>{
      */
     @Override
     public User get(long id) {
+        
         switch ((int)id){
             case 1:
                 return new User(1, 10);
@@ -38,6 +39,8 @@ public class UserDao implements Dao<User>{
      */
     @Override
     public User get(String username) {
+        if (username==null) return null;
+
         switch (username){
             case "user1":
                 return new User(1, 10);

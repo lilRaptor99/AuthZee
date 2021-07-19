@@ -35,7 +35,7 @@ public class Authorization {
      * Performed checks:1. A valid JSON string
      *                  2. Has all the token attributes
      *                  3. Not expired
-     *                  4. Hashes matches with the computed hash
+     *                  4. Hash matches with the computed hash
      * @param userToken Cookie having the user token
      * @return Whether the token cookie is valid or not
      */
@@ -72,7 +72,7 @@ public class Authorization {
      */
     private static JSONObject getJSONToken(Cookie userToken) throws JSONException {
         String decodedToken = base64Decode(userToken.getValue());
-        System.out.println("Decoded token: " + decodedToken);
+        //System.out.println("Decoded token: " + decodedToken);
 
         return new JSONObject(decodedToken);
     }

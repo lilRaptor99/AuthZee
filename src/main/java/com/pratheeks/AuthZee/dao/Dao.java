@@ -12,7 +12,7 @@ public interface Dao<T> {
     ArrayList<T> getAll();
 
     /** Save and return id */
-    long save(T t);
+    void save(T t);
 
     /** Batch save */
     void save(ArrayList<T> list);

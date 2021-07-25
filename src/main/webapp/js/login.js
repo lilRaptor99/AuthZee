@@ -1,48 +1,25 @@
-$(document).ready(function () {
-  // Login
-  $("#btnLogin").on("click", () => {
-    console.log($("#username").val(), $("#password").val());
+// Login
+$("#btnLogin").on("click", () => {
+  let rememberMe = "null";
+  if ($("#remember").prop("checked") === true) {
+    rememberMe = "on";
+  }
 
-    let rememberMe = "null";
-    if ($("#remember").prop("checked") === true) {
-      rememberMe = "on";
-    }
+  $.ajax({
+    type: "POST",
+    url: "api/login",
 
-    // $.post("api/login", {
-    //   username: $("#username").val(),
-    //   password: $("#password").val(),
-    //   remember: rememberMe,
-    // })
-    //   .done((data, status) => {
-    //     console.log("Res data:", data, "Res status: ", status);
-    //   })
-    //   .fail((xhr, status, error) => {
-    //     console.log("Error! ", "XHR:", xhr, "Status:", status, "Error:", error);
-    //   });
+    data: `username=${$("#username").val()}&password=${$(
+      "#password"
+    ).val()}&remember=${rememberMe}`,
 
-    $.ajax({
-      type: "POST",
-      url: "api/login",
+    success: (msg) => {
+      console.log("Logged in. Message: ", msg);
+      window.location.replace("index.html");
+    },
 
-      data: `username=${$("#username").val()}&password=${$(
-        "#password"
-      ).val()}&remember=${rememberMe}`,
-
-      success: (msg) => {
-        console.log("Logged in. Message: ", msg);
-        //window.location.replace("index.html");
-      },
-
-      error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.log(
-          "Login error: ",
-          XMLHttpRequest,
-          "\nText status: ",
-          textStatus,
-          "\nError thrown: ",
-          errorThrown
-        );
-      },
-    });
+    error: () => {
+      alert("Login error! \nInvalid credentials");
+    },
   });
 });

@@ -1,5 +1,6 @@
 package com.pratheeks.AuthZee.api;
 
+import com.pratheeks.AuthZee.auth.AuthService;
 import com.pratheeks.AuthZee.auth.Authentication;
 import com.pratheeks.AuthZee.auth.Authorization;
 import com.pratheeks.AuthZee.dao.UserDao;
@@ -38,15 +39,7 @@ public class loginServlet extends HttpServlet {
         JSONObject res = new JSONObject();
 
         // If the login request already has a userToken cookie: validate the token
-        Cookie[] requestCookies = request.getCookies();
-        Cookie requestTokenCookie = null;
-        if(requestCookies != null) {
-            for (Cookie requestCookie : requestCookies) {
-                if (requestCookie.getName().equals("userToken")) {
-                    requestTokenCookie = requestCookie;
-                }
-            }
-        }
+        Cookie requestTokenCookie = AuthService.getUserTokenCookie(request);
         // If the cookie is valid then user is already logged in
         if(requestTokenCookie != null && Authorization.isValidTokenCookie(requestTokenCookie)){
             response.setStatus(409); // conflict - user is already logged in

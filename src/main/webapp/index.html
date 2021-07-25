@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/home.js" defer></script>
     <title>AuthZee - Home</title>
   </head>
   <body>
-    <h1>Home page</h1>
-    <h2><a href="login.html">Login</a></h2>
+    <h3 id="login"><a href="login.html">Login</a></h3>
+    <h3 id="user"></h3>
+    <button id="logout">Logout</button>
+    <br />
+    <br />
+    <fieldset style="width: min-content">
+      <legend>Add user</legend>
+      <input type="text" id="name" placeholder="Name" />
+      <br />
+      <br />
+      <input type="text" id="level" placeholder="Level" />
+      <br />
+      <br />
+      <button id="btnAddUser">Add user</button>
+    </fieldset>
+    <br />
+    <div>
+      User list:
+      <ul id="userList"></ul>
+    </div>
   </body>
 </html>
